@@ -1,7 +1,7 @@
 import os
 import random, json
 
-PRETVORBA = 'stanje.txt'
+PRETVORBA = 'pretvorba.txt'
 
 class Model:
     def __init__(self):
@@ -24,7 +24,7 @@ class Model:
 
 
     def racunanje(self):
-        tuja_valuta = self.seznam[2]
+        tuja_valuta = self.seznam[1]
         if self.seznam[:-1] == 'USD':
             tuja_valuta = self.seznam[1] * 1.1135
         elif self.seznam[:-1] == 'HRK':
@@ -70,6 +70,7 @@ class Model:
             print('Ustvarjena nova datoteka')
             f.close()
 
+    
     def koda(self):
         if self.koda != '0000':
             return 'Napacno geslo'
