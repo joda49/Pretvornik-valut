@@ -26,6 +26,7 @@ class Model:
 
 
     def opozorila(self):
+        if len(self.seznam) > 0:
             datum1 = self.seznam[0].split('.')
             if len(datum1) != 3:
                 for i in datum1:
