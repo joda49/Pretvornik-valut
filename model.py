@@ -24,7 +24,7 @@ class Model:
 
 
     def racunanje(self):
-        tuja_valuta = self.seznam[1]
+        tuja_valuta = 0
         if self.seznam[:-1] == 'USD':
             tuja_valuta = self.seznam[1] * 1.1135
         elif self.seznam[:-1] == 'HRK':
@@ -38,7 +38,7 @@ class Model:
         elif self.seznam[:-1] == 'RSD':
             tuja_valuta = self.seznam[1] * 119.55
         elif self.seznam[:-1] == 'BTC':
-            tuja_valuta = self.seznam[1] * 9149.14
+            tuja_valuta = self.seznam[1] / 9149.14
         return tuja_valuta
 
     def opozorila(self):
