@@ -8,7 +8,7 @@ pretvornik = model.Model()
 
 @route('/')
 def password():
-    return bottle.template('password.html')
+    return bottle.template('prvi zavihek.html')
 
 @bottle.post('/')
 def nadaljuj():
@@ -33,14 +33,14 @@ def razveljavi():
 
 @bottle.get('/izračunaj/')
 def racunanje():
-    return bottle.template(, koliko EUR = '' )
+    return bottle.template( koliko EUR = '' )
 #Kako se naredi oni drsnik in kako ono polje kamor mi vrže izračun
 
 
 @bottle.post('/zgodovina/')
 def zgodovina():
     pretvornik.prikaz_zgo()
-    bottle.redirect('/')
+    return bottle.template('zgodovina.html')
 
 bottle.run(reloader=True, debug=True)
 

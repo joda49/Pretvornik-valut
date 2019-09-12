@@ -1,0 +1,26 @@
+%import model
+<!DOCTYPE html>
+<html>
+
+    <body bgcolor="#A5F8D9">
+
+        <h1>Izračunaj</h1>
+
+        <form action='/' method="POST">
+            Datum (dd.mm.llll): <input type="text" placeholder='DD.MM.LLLL' name="datum" required pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}"><br>
+            EUR: <input type="number" name="koliko EUR" min="0" required> EUR <br>
+            Valuta: <input type="number" name="Valuta" required> <br>
+            Tuja Valuta: <input type="number" name="Tuja Valuta" min="0" required> €/l<br>
+            <input type="submit" value="Vnesi">
+        </form>
+
+        <form action="/reset/" method="GET">
+            <button type="submit">Reset</button>
+        </form>
+
+        <form action="/prikazi_zgodovino/" method="GET">
+            <button type="submit">Prikaži zgodovino</button>
+        </form>
+
+    </body>
+</html>
