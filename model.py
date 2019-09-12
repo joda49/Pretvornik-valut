@@ -10,7 +10,7 @@ class Model:
         self.osvezi_seznam()
 
     def vnesi_podatke(self, podatki):
-        podatki = '{}, {}, {}, {}\n'.format(podatki.get('datum'), podatki.get('koliko EUR'), podatki.get('stevilo'), podatki.get('valuta'))
+        podatki = '{}, {}, {}, {}\n'.format(podatki.get('datum'), podatki.get('koliko EUR'), podatki.get('valuta'))
         with open(PRETVORBA, 'a') as data:
             data.write(podatki)
         self.seznam.append(podatki)
@@ -21,6 +21,19 @@ class Model:
             lines = self.seznam
             with open(PRETVORBA,'w') as zgo:
                 zgo.writelines([item for item in lines]) 
+
+
+
+    def opozorila(self):
+            datum1 = self.seznam[0].split('.')
+            if len(datum1) != 3:
+                for i in datum1:
+                    if i.isdigit() == False:
+                        return 'Popravi datum'
+            if self.seznam[1].isdigit() == False:
+                return 'Popravi stevilo evrov'
+            else:
+                pass
 
 
     def racunanje(self):
@@ -41,19 +54,11 @@ class Model:
             tuja_valuta = self.seznam[1] / 9149.14
         return tuja_valuta
 
-    def opozorila(self):
-        datum1 = self.seznam[0].split('.')
-        if len(datum1) != 3:
-            for i in datum1:
-                if i.isdigit() == False:
-                    return 'Popravi datum'
-        if self.seznam[1].isdigit() == False:
-            return 'Popravi stevilo evrov'
-        else:
-            pass
+    
     
     def prikaz_zgo(self):
-        zgo = self.seznam[-10:].sort()
+        sez1 = self.seznam.insert(2, tuja_valuta)
+        zgo = sez1[-10:].sort()
         if len(zgo) < 10:
             zgo = [', , , ',', , , ',', , , ',', , , ',', , , '] + zgo
         return zgo
@@ -70,9 +75,16 @@ class Model:
             print('Ustvarjena nova datoteka')
             f.close()
 
+
+    def reset_funkcija(self):
+        if os.path.exists(PRETVORBA):
+            os.remove(PRETVORBA)
+            self.seznam = []
+        else:
+            print('Datoteka ne obstaja.')
     
     def koda(self):
         if self.koda != '0000':
-            return 'Napacno geslo'
+            return  koda(self) + 'Napacno geslo'
         else:
-            ''
+            return 'Pravilno geslo'

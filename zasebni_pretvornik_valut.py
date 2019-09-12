@@ -4,48 +4,43 @@ from bottle import route, run, Response, template
 
 app = bottle.default_app()
 
-gorivo = model.Model()
+pretvornik = model.Model()
 
 @route('/')
-def index():
-    return bottle.template('index2.html')
+def password():
+    return bottle.template('password.html')
 
 @bottle.post('/')
+def nadaljuj():
+    pretvornik.koda()
+    return bottle.template('pretvornik valut.html')
+
+@bottle.get('/pretvornik valut/')
 def vnesi():
-    gorivo.vnesi_tank({'datum': bottle.request.forms.get('datum'), 'tank': bottle.request.forms.get('tank'), 'stanje': bottle.request.forms.get('stanje'), 'cena': bottle.request.forms.get('cena')} )
+    pretvornik.vnesi_podatke({'datum': bottle.request.forms.get('datum'), 'koliko EUR': bottle.request.forms.get('koliko EUR'), 'valuta': bottle.request.forms.get('valuta')} )
+    # Tukaj ne vem kaj naj naredim
     bottle.redirect('/')
 
-@bottle.get('/prikazi_zgodovino/')
-def zgodovina():
-    zgo = gorivo.prikazi_zgodovino()
-    cena = gorivo.cena()
-    if cena > 0:
-        cena = 'je podražilo.'
-    elif cena < 0:
-        cena = 'je pocenilo.'
-    else:
-        cena = 'ni podražilo.'
-    analiza = [gorivo.km_tankamo(), cena, gorivo.poraba_avta()]
-    return bottle.template('zgodovina.html', gorivo = zgo, analiza = analiza)
-
-@bottle.get('/delete/')
-def razveljavi_zadnji():
-    gorivo.razveljavi()
+@bottle.get('/')
+def opozorilo():
+    pretvornik.opozorila()
     bottle.redirect('/')
 
 @bottle.get('/reset/')
-def reset():
-    gorivo.reset_funkcija()
+def razveljavi():
+    pretvornik.reset_funkcija()
     bottle.redirect('/')
 
-@bottle.get('/kalkulator/')
-def kalkulator():
-    return bottle.template('kalkulator.html', stroski = '')
+@bottle.get('/izračunaj/')
+def racunanje():
+    return bottle.template(, koliko EUR = '' )
+#Kako se naredi oni drsnik in kako ono polje kamor mi vrže izračun
 
-@bottle.post('/kalkulator/')
-def izracunaj():
-    stroski = gorivo.izracun_stroskov({'razdalja': bottle.request.forms.get('razdalja'), 'poraba': bottle.request.forms.get('poraba'), 'cena': bottle.request.forms.get('cena')} )
-    return bottle.template('kalkulator.html', stroski = 'Rezultat ' + str(stroski) + ' €')
+
+@bottle.post('/zgodovina/')
+def zgodovina():
+    pretvornik.prikaz_zgo()
+    bottle.redirect('/')
 
 bottle.run(reloader=True, debug=True)
 
