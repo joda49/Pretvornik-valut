@@ -6,13 +6,13 @@ PRETVORBA = 'pretvorba.txt'
 class Model:
     def __init__(self):
         self.seznam = []
-        self.koda = ''
-        #self.osvezi_seznam()
+        self.pravakoda = '0000'
+        
 
     def vnesi_podatke(self, podatki):
-        podatki = ' {}, {}, {}\n'.format(podatki.get('datum'), podatki.get('koliko EUR'), podatki.get('valuta'))
+        podatki2 = ' {}, {}, {}\n'.format(podatki.get('datum'), podatki.get('koliko EUR'), podatki.get('valuta'))
         with open(PRETVORBA, 'a') as data:
-            data.write(podatki)
+            data.write(podatki2)
         podatki = (podatki.get('datum'), podatki.get('koliko EUR'), podatki.get('valuta'))
         self.seznam.append(podatki)
 
@@ -40,20 +40,20 @@ class Model:
 
     def racunanje(self):
         tuja_valuta = 0
-        if self.seznam[-1] == 'USD':
-            tuja_valuta = self.seznam[1] * 1.1135
+        if self.seznam[-1][2] == 'USD':
+            tuja_valuta = int(self.seznam[1][1]) * 1.1135
         elif self.seznam[-1][2] == 'HRK':
-            tuja_valuta = self.seznam[1] * 7.4795
+            tuja_valuta = int(self.seznam[1][1]) * 7.4795
         elif self.seznam[-1][2] == 'GBP':
-            tuja_valuta = self.seznam[1] * 0.9055
+            tuja_valuta = int(self.seznam[1][1]) * 0.9055
         elif self.seznam[-1][2] == 'HUF':
-            tuja_valuta = self.seznam[1] * 336.17
+            tuja_valuta = int(self.seznam[1][1]) * 336.17
         elif self.seznam[-1][2] == 'JPY':
-            tuja_valuta = self.seznam[1] * 120.91
+            tuja_valuta = int(self.seznam[1][1]) * 120.91
         elif self.seznam[-1][2] == 'RSD':
-            tuja_valuta = self.seznam[1] * 119.55
+            tuja_valuta = int(self.seznam[1][1]) * 119.55
         elif self.seznam[-1][2] == 'BTC':
-            tuja_valuta = self.seznam[1] / 9149.14
+            tuja_valuta = int(self.seznam[1][1]) / 9149.14
         return tuja_valuta
 
     
@@ -61,30 +61,14 @@ class Model:
     def prikaz_zgo(self):
         with open(PRETVORBA, 'r') as data:
             data1 = data.readlines
-        return data1[-10:]
-
-    #def osvezi_seznam(self):
-     #   self.seznam = []
-      #  try:
-       #     if os.stat(PRETVORBA).st_size != 0:
-        #        with open(PRETVORBA) as zgodovina:
-         #           for vrstica in zgodovina:
-          #              self.seznam.append(vrstica)
-       # except:
-          #  f = open(PRETVORBA, "w+")
-          #  print('Ustvarjena nova datoteka')
-           # f.close()
+        print(data1)
+        return data1[-4:]
 
 
-#    def reset_funkcija(self):
-#        if os.path.exists(PRETVORBA):
-#            os.remove(PRETVORBA)
- #           self.seznam = []
-  #      else:
-   #         print('Datoteka ne obstaja.')
+    
     
     def koda(self, poskus):
-        if self.koda == poskus:
+        if self.pravakoda == poskus:
             return True 
         else:
             return False

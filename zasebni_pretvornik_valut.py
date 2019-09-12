@@ -10,36 +10,32 @@ pretvornik = model.Model()
 def password():
     return bottle.template('prvi zavihek.html')
 
-'''@bottle.post('/')
+@bottle.post('/')
 def nadaljuj():
-    pretvornik.koda()
-    return bottle.template('pretvornik valut.html')
+    poskus = bottle.request.forms.get('PIN')
+    if pretvornik.koda(poskus) == True:
+        return bottle.template('pretvornik valut.html', rezultat = '')
+    else:
+         return bottle.template('prvi zavihek.html')
 
-@bottle.get('/pretvornik valut/')
+
+@bottle.post('/pretvornik_valut/')
 def vnesi():
     pretvornik.vnesi_podatke({'datum': bottle.request.forms.get('datum'), 'koliko EUR': bottle.request.forms.get('koliko EUR'), 'valuta': bottle.request.forms.get('valuta')} )
-    # Tukaj ne vem kaj naj naredim
-    bottle.redirect('/')
+    rezult = pretvornik.racunanje()
+    return bottle.template('pretvornik valut.html', rezultat = rezult)
 
-@bottle.get('/')
-def opozorilo():
-    pretvornik.opozorila()
-    bottle.redirect('/')
+
+
 
 @bottle.get('/reset/')
 def razveljavi():
-    pretvornik.reset_funkcija()
-    bottle.redirect('/')
+    return bottle.template('pretvornik valut.html')
 
-@bottle.get('/izračunaj/')
-def racunanje():
-    return bottle.template()# koliko EUR = '' )
-#Kako se naredi oni drsnik in kako ono polje kamor mi vrže izračun
 
 
 @bottle.post('/zgodovina/')
 def zgodovina():
-    pretvornik.prikaz_zgo()
     return bottle.template('zgodovina.html')
 
 bottle.run(reloader=True, debug=True)

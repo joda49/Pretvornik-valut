@@ -1,0 +1,41 @@
+%import model
+<!DOCTYPE html>
+<html>
+
+<body bgcolor=#99ff33 >
+  <h1>Zgodovina</h1>
+
+  <table  style="width: 80%;">
+    <thead> 
+        <th>Datum</th><th>EUR</th><th>Tuja valuta</th><th>Trenutna vrednost</th>
+    </thead>
+    <tbody>
+            <tr>
+                <td align='center'> {{self.seznam[-1][0]}} </td>
+                <td align='center'> {{self.seznam[-1][1]}} EUR </td>
+                <td align='center'> {{self.seznam[-1][2]}} valuta </td>
+                <td align='center'> {{self.seznam[-1][3]}} tuja valuta </td>
+            </tr>
+            <tr>
+                <td align='center'> {{self.seznam[-2][0]}} </td>
+                <td align='center'> {{self.seznam[-2][1]}} EUR </td>
+                <td align='center'> {{self.seznam[-2][2]}} valuta </td>
+                <td align='center'> {{self.seznam[-2][3]}} tuja valuta </td>
+            </tr>
+            <tr>
+                <td align='center'> {{self.seznam[-3][0]}} </td>
+                <td align='center'> {{self.seznam[-3][1]}} EUR </td>
+                <td align='center'> {{self.seznam[-3][2]}} valuta </td>
+                <td align='center'> {{self.seznam[-3][3]}} tuja valuta </td>
+            </tr>
+            <tr>
+                <td align='center'> {{self.seznam[-4][0]}} </td>
+                <td align='center'> {{self.seznam[-4][1]}} EUR </td>
+                <td align='center'> {{self.seznam[-4][2]}} valuta </td>
+                <td align='center'> {{self.seznam[-4][3]}} tuja valuta </td>
+            </tr>
+           
+        </tbody>
+    </table>
+</body>
+</html>
