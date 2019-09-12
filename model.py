@@ -53,7 +53,7 @@ class Model:
             pass
     
     def prikaz_zgo(self):
-        zgo = self.seznam[-10:]
+        zgo = self.seznam[-10:].sort()
         if len(zgo) < 10:
             zgo = [', , , ',', , , ',', , , ',', , , ',', , , '] + zgo
         return zgo
@@ -75,4 +75,4 @@ class Model:
         if self.koda != '0000':
             return 'Napacno geslo'
         else:
-            pass
+            ''
