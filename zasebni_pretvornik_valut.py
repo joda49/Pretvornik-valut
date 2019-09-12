@@ -33,7 +33,7 @@ def razveljavi():
 
 @bottle.get('/izračunaj/')
 def racunanje():
-    return bottle.template( koliko EUR = '' )
+    return bottle.template()# koliko EUR = '' )
 #Kako se naredi oni drsnik in kako ono polje kamor mi vrže izračun
 
 
