@@ -10,7 +10,7 @@ class Model:
         self.osvezi_seznam()
 
     def vnesi_podatke(self, podatki):
-        podatki = '{}, {}, {}, {}\n'.format(podatki.get('datum'), podatki.get('koliko EUR'), podatki.get('valuta'))
+        podatki = ', {}, {}, {}\n'.format(podatki.get('datum'), podatki.get('koliko EUR'), podatki.get('valuta'))
         with open(PRETVORBA, 'a') as data:
             data.write(podatki)
         self.seznam.append(podatki)
