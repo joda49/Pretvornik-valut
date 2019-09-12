@@ -10,7 +10,7 @@ pretvornik = model.Model()
 def password():
     return bottle.template('prvi zavihek.html')
 
-@bottle.post('/')
+'''@bottle.post('/')
 def nadaljuj():
     pretvornik.koda()
     return bottle.template('pretvornik valut.html')
@@ -43,10 +43,3 @@ def zgodovina():
     return bottle.template('zgodovina.html')
 
 bottle.run(reloader=True, debug=True)
-
-
-
-
-
-
-

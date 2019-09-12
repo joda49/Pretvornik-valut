@@ -83,8 +83,8 @@ class Model:
   #      else:
    #         print('Datoteka ne obstaja.')
     
-    #def koda(self, poskus):
-     #   if self.koda == poskus:
-      #      return True 
-       # else:
-        #    return False
+    def koda(self, poskus):
+        if self.koda == poskus:
+            return True 
+        else:
+            return False
